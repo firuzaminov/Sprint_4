@@ -46,7 +46,14 @@ public class MainPageScooter {
         this.driver = driver;
         _header = new HeaderWithTwoButtons(driver);
     }
-
+    //Метод для выбора нажатия верхней или нижней кнопки Заказать
+    public void clickUpOrDownButton(boolean upAndDownButton) {
+        if (upAndDownButton) {
+            _header.clickToOrderButton();
+        } else {
+            clickToOrderDownButton();
+        }
+    }
 
     //Общий метод получения текста ответа для всех вопросов
     private String getAnswerForQuestion(By questionLocator, By aLocator, int indexQuestion) {
