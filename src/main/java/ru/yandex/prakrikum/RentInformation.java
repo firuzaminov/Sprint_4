@@ -11,8 +11,7 @@ import java.time.Duration;
 public class RentInformation {
     public static final By WHEN_BRING_SCOOTER = By.xpath(".//input[@placeholder = '* Когда привезти самокат']");
     public static final By RENTAL_PERIOD = By.className("Dropdown-arrow");
-    public static final By HOW_DAYS = By.xpath("//div[2][contains(text(), \"двое суток\")]");
-    public static final By HOW_DAYS_2 = By.xpath("//div[3][contains(text(), \"трое суток\")]");
+    public static final By HOW_DAYS = By.className("Dropdown-option");
     public static final By COLOUR_SCOOTER_BLACK = By.id("black");
     public static final By COLOUR_SCOOTER_GREY = By.id("grey");
     public static final By COMMENT = By.xpath(".//input[@placeholder = 'Комментарий для курьера']");
@@ -27,15 +26,26 @@ public class RentInformation {
 
     }
 
-    //Метод заполнения формы Про аренду с первым набором данным
-    public void inputInformationForRentFirstDataSet(String dateFirstDataSet, String commentFirstDataSet) {
+    public void inputDateArrive(String dateArrive) {
         driver.findElement(WHEN_BRING_SCOOTER).clear();
-        driver.findElement(WHEN_BRING_SCOOTER).sendKeys(dateFirstDataSet);
+        driver.findElement(WHEN_BRING_SCOOTER).sendKeys(dateArrive);
+    }
+
+    public void clickRental() {
         driver.findElement(RENTAL_PERIOD).click();
-        driver.findElement(HOW_DAYS).click();
+    }
+
+    public void chooseDays(int days) {
+        driver.findElements(HOW_DAYS).get(days).click();
+    }
+
+    public void chooseColour() {
         driver.findElement(COLOUR_SCOOTER_BLACK).click();
+    }
+
+    public void inputComment(String comment) {
         driver.findElement(COMMENT).clear();
-        driver.findElement(COMMENT).sendKeys(commentFirstDataSet);
+        driver.findElement(COMMENT).sendKeys(comment);
     }
 
     public void clickOrderButton() {
@@ -59,15 +69,18 @@ public class RentInformation {
     }
 
     //Метод заполнения формы Про аренду со вторым набором данным.
-    public void inputInformationForRentSecondDataSet(String dateSecondDataSet, String commentSecondDataSet) {
-        driver.findElement(WHEN_BRING_SCOOTER).clear();
-        driver.findElement(WHEN_BRING_SCOOTER).sendKeys(dateSecondDataSet);
-        driver.findElement(RENTAL_PERIOD).click();
-        driver.findElement(HOW_DAYS_2).click();
-        driver.findElement(COLOUR_SCOOTER_GREY).click();
-        driver.findElement(COMMENT).clear();
-        driver.findElement(COMMENT).sendKeys(commentSecondDataSet);
-
+    public void inputRental(String dateArriveField, int days, String commentField) {
+        inputDateArrive(dateArriveField);
+        clickRental();
+        chooseDays(days);
+        chooseColour();
+        inputComment(commentField);
+        clickOrderButton();
+        isDisplayedInformationSure();
+        clickApproveButtonYes();
+        isDisplayedSuccessWindow();
     }
+
+
 
 }

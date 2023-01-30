@@ -19,23 +19,28 @@ public class TestingScooterOrder {
     private final String name;
     private final String surname;
     private final String address;
+    private final int metroStation;
     private final String phoneNumber;
-    private final String date;
+    private final String deliveryDate;
+    private final int deliveryDay;
     private final String comment;
-    public TestingScooterOrder(String name, String surname, String address, String phoneNumber, String date, String comment) {
+
+    public TestingScooterOrder(String name, String surname, String address,int metroStation, String phoneNumber, String deliveryDate, int deliveryDay, String comment) {
         this.name = name;
         this.surname = surname;
         this.address = address;
+        this.metroStation = metroStation;
         this.phoneNumber = phoneNumber;
-        this.date = date;
+        this.deliveryDate = deliveryDate;
+        this.deliveryDay = deliveryDay;
         this.comment = comment;
     }
 
     @Parameterized.Parameters // добавили аннотацию
     public static Object[][] inputData() {
         return new Object[][]{
-                {"Фируз", "Аминов", "ул. Московская, д. 23, кв. 12","+75456783454","25.01.2023","Люблю кататься на самокате"},
-                {"Дмитрий","Левый", "ул. Пушкина, д. 666, кв. 13","+76666666666", "12.02.2023", "Я очень люблю кататься на самокате"},
+                {"Фируз", "Аминов", "ул. Московская, д. 23, кв. 12",1, "+75456783454", "25.01.2023",2,"Люблю кататься на самокате"},
+                {"Дмитрий","Левый", "ул. Пушкина, д. 666, кв. 13", 2, "+76666666666","12.02.2023", 3,"Я очень люблю кататься на самокате"},
         };
     }
 
@@ -52,10 +57,11 @@ public class TestingScooterOrder {
         HeaderWithTwoButtons headerWithTwoButtons = new HeaderWithTwoButtons(driver);
         headerWithTwoButtons.clickToOrderButton();
         UserInformationForOrder userInformationForOrder = new UserInformationForOrder(driver);
-        userInformationForOrder.inputInformationAboutCustomerFirstDataSet(name, surname, address, phoneNumber);
+        userInformationForOrder.inputCustomer(name, surname, address, metroStation, phoneNumber);
         userInformationForOrder.clickNextButton();
+
         RentInformation rentInformation = new RentInformation(driver);
-        rentInformation.inputInformationForRentFirstDataSet(date, comment);
+        rentInformation.inputRental(deliveryDate, deliveryDay, comment);
         rentInformation.clickOrderButton();
         Assert.assertTrue(rentInformation.isDisplayedInformationSure());
         rentInformation.clickApproveButtonYes();
