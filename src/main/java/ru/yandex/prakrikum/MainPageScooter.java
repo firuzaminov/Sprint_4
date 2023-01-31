@@ -46,6 +46,7 @@ public class MainPageScooter {
         this.driver = driver;
         _header = new HeaderWithTwoButtons(driver);
     }
+
     //Метод для выбора нажатия верхней или нижней кнопки Заказать
     public void clickUpOrDownButton(boolean upAndDownButton) {
         if (upAndDownButton) {

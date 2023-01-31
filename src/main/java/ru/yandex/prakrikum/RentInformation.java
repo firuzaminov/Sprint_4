@@ -9,14 +9,14 @@ import java.time.Duration;
 
 //Блок локаторов, описывающие поля ввода на форме Про аренду
 public class RentInformation {
-    public static final By WHEN_BRING_SCOOTER = By.xpath(".//input[@placeholder = '* Когда привезти самокат']");
-    public static final By RENTAL_PERIOD = By.className("Dropdown-arrow");
-    public static final By HOW_DAYS = By.className("Dropdown-option");
-    public static final By COLOUR_SCOOTER_BLACK = By.id("black");
-    public static final By COMMENT = By.xpath(".//input[@placeholder = 'Комментарий для курьера']");
-    public static final By RENT_ORDER_BUTTON = By.cssSelector(".Order_Buttons__1xGrp .Button_Button__ra12g:last-child");
-    public static final By APPROVE_BUTTON_YES = By.cssSelector(".Order_Modal__YZ-d3 .Order_Buttons__1xGrp .Button_Button__ra12g:last-child");
-    public static final By SUCCESS_WINDOW = By.className("Order_Text__2broi");
+    private static final By WHEN_BRING_SCOOTER = By.xpath(".//input[@placeholder = '* Когда привезти самокат']");
+    private static final By RENTAL_PERIOD = By.className("Dropdown-arrow");
+    private static final By HOW_DAYS = By.className("Dropdown-option");
+    private static final By COLOUR_SCOOTER_BLACK = By.id("black");
+    private static final By COMMENT = By.xpath(".//input[@placeholder = 'Комментарий для курьера']");
+    private static final By RENT_ORDER_BUTTON = By.cssSelector(".Order_Buttons__1xGrp .Button_Button__ra12g:last-child");
+    private static final By APPROVE_BUTTON_YES = By.cssSelector(".Order_Modal__YZ-d3 .Order_Buttons__1xGrp .Button_Button__ra12g:last-child");
+    private static final By SUCCESS_WINDOW = By.className("Order_Text__2broi");
     private final WebDriver driver;
 
     public RentInformation(WebDriver driver) {
@@ -39,15 +39,31 @@ public class RentInformation {
         return driver.findElement(SUCCESS_WINDOW).isDisplayed();
     }
 
-    //Реализован общий метод заполнения формы аренды
-    public void inputInformationForRent(String dateArriveField, int days, String commentField) {
+    private void bringScooter(String dateArriveField) {
         driver.findElement(WHEN_BRING_SCOOTER).clear();
         driver.findElement(WHEN_BRING_SCOOTER).sendKeys(dateArriveField);
+    }
+
+    private void rentalPeriod(int days) {
         driver.findElement(RENTAL_PERIOD).click();
         driver.findElements(HOW_DAYS).get(days).click();
+    }
+
+    private void colourScooter() {
         driver.findElement(COLOUR_SCOOTER_BLACK).click();
+    }
+
+    private void commentInput(String commentField) {
         driver.findElement(COMMENT).clear();
         driver.findElement(COMMENT).sendKeys(commentField);
+    }
+
+    //Реализован общий метод заполнения информации о заказе
+    public void inputInformationForRent(String date, int daysRent, String comment) {
+        bringScooter(date);
+        rentalPeriod(daysRent);
+        colourScooter();
+        commentInput(comment);
     }
 
 
