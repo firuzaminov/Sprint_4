@@ -20,7 +20,7 @@ public class UserInformationForOrder {
         this.driver = driver;
     }
 
-    //Реализован общий метод заполнения информации о заказчике
+    //Реализован общий метод заполнения информации о заказчике.
     public void inputInformationAboutCustomer(String nameFieldDataSet, String surnameFieldDataSet, String addressFirstDataSet, int metroIndex, String phoneNumberField) {
         driver.findElement(NAME).clear();
         driver.findElement(NAME).sendKeys(nameFieldDataSet);

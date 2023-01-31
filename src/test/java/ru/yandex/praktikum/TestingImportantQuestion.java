@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import ru.yandex.prakrikum.MainPageScooter;
-
 import static org.junit.Assert.assertEquals;
 
 

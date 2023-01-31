@@ -12,7 +12,7 @@ public class HeaderWithTwoButtons {
         this.driver = driver;
     }
 
-    //Метод нажатия на кнопку Заказать, которая находится в заголовке страницы
+    //Метод нажатия на кнопку Заказать, которая находится в заголовке страницы.
     public void clickToOrderButton() {
         driver.findElement(ORDER_BUTTON).click();
     }

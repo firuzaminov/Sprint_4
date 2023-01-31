@@ -1,7 +1,6 @@
 package ru.yandex.praktikum;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import ru.yandex.prakrikum.MainPageScooter;
 import ru.yandex.prakrikum.RentInformation;
 import ru.yandex.prakrikum.UserInformationForOrder;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
 public class TestingScooterOrder {
@@ -63,7 +63,7 @@ public class TestingScooterOrder {
         rentInformation.inputInformationForRent(deliveryDate, deliveryDay, comment);
         rentInformation.clickOrderButton();
         rentInformation.clickApproveButtonYes();
-        Assert.assertTrue(rentInformation.isDisplayedSuccessWindow());
+        assertTrue(rentInformation.isDisplayedSuccessWindow());
     }
 
     @After

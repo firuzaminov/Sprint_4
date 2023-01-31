@@ -36,8 +36,7 @@ public class RentInformation {
     }
 
     public boolean isDisplayedSuccessWindow() {
-        boolean isDisplayedInformationSuccess = driver.findElement(SUCCESS_WINDOW).isDisplayed();
-        return isDisplayedInformationSuccess;
+        return driver.findElement(SUCCESS_WINDOW).isDisplayed();
     }
 
     //Реализован общий метод заполнения формы аренды

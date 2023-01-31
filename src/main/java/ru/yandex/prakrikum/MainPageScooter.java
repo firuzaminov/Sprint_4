@@ -105,7 +105,7 @@ public class MainPageScooter {
         return getAnswerForQuestion(I_LIVE_OUTSIDE_THE_MOSCOW, I_LIVE_OUTSIDE_THE_MOSCOW_INFORMATION, outsideTheMoscowIndex);
     }
 
-    //Метод нажатия на кнопку Заказать снизу главной страницы
+    //Метод нажатия на кнопку Заказать снизу главной страницы.
     public void clickToOrderDownButton() {
         WebElement element = driver.findElement(DOWN_ORDER_BUTTON);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
